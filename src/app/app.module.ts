@@ -7,16 +7,20 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
 import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        MenubarModule,
         FormsModule,
         TableModule,
         HttpClientModule,
