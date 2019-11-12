@@ -32,11 +32,35 @@ export class AppComponent implements OnInit {
         this.carService.getCarsSmall().then(cars => this.cars = cars);
 
         this.cols = [
-            { field: 'vin', header: 'Vin' },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color' }
+            { field: 'vin', header: 'ID' },
+            { field: 'year', header: 'Nombre del Producto' },
+            { field: 'brand', header: 'Características' },
+            { field: 'lanzamiento', header: 'Fecha de lanzamiento' },
+            { field: 'fabricante', header: 'Correo fabricante' },
+            { field: 'fabricacion', header: 'País de fabricación' },
+
+            { field: 'moneda', header: 'Precio en formato de moneda' },
+
+            { field: 'disponibles', header: 'Unidades disponibles' },
+
+            { field: 'vendidas', header: 'Unidades vendidas' },
+
+            { field: 'imagen', header: 'Imagen del producto' }
+
         ];
+        // a.	ID 
+// b.	Nombre del Producto 
+// c.	Características (campo tipo texto) 
+// d.	Fecha de lanzamiento 
+// e.	Correo fabricante 
+// f.	País de fabricación 
+// i.	Usar el siguiente servicio (https://restcountries.eu/#api-endpoints-response-example ) u otro en desde internet 
+ 
+// g.	Precio en formato de moneda 
+// h.	Unidades disponibles 
+// i.	Unidades vendidas 
+// j.	Imagen del producto 
+
     }
 
     showDialogToAdd() {
