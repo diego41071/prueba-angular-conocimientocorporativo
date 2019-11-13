@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from './domain/car';
 import { CarService } from './services/carservice';
+import { UserService } from './user.service';
 
 export class PrimeCar implements Car {
     constructor(public vin?, public year?, public brand?, public color?) {}
@@ -13,6 +14,8 @@ export class PrimeCar implements Car {
     providers: [CarService]
 })
 export class AppComponent implements OnInit {
+    title = 'demo131';
+    users: any;
 
     displayDialog: boolean;
 
@@ -26,9 +29,20 @@ export class AppComponent implements OnInit {
 
     cols: any[];
 
-    constructor(private carService: CarService) { }
+    constructor(private carService: CarService,
+        protected userService: UserService) { }
 
     ngOnInit() {
+        this.userService.getUsers()
+        .subscribe(
+          (data) => { // Success
+            this.users = data['']
+            console.log(data)
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
         this.carService.getCarsSmall().then(cars => this.cars = cars);
 
         this.cols = [

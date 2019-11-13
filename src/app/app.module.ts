@@ -11,6 +11,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
+import { UserService } from './user.service';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,7 @@ import { MenuComponent } from './menu/menu.component';
         DialogModule,
         ButtonModule
     ],
-    providers: [],
+    providers: [UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
