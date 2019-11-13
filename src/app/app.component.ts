@@ -14,6 +14,8 @@ export class PrimeCar implements Car {
     providers: [CarService]
 })
 export class AppComponent implements OnInit {
+    uploadedFiles: any[] = [];
+
     title = 'demo131';
     users: any;
 
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
     constructor(private carService: CarService,
         protected userService: UserService) { }
 
+            
     ngOnInit() {
         this.userService.getUsers()
         .subscribe(
@@ -63,6 +66,11 @@ export class AppComponent implements OnInit {
         ];
     }
 
+    onUpload(event) {
+        for(let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+    }
     showDialogToAdd() {
         this.newCar = true;
         this.car = new PrimeCar();
