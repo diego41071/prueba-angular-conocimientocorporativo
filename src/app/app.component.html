@@ -1,117 +1,132 @@
-<!-- <app-menu></app-menu> -->
-
-<div >
-    <select name="pais" >
-        <option *ngFor="let user of users" [value]="user.alpha2Code">{{ user.name }}</option>
-    </select>
-</div>
-<p-table
-  [columns]="cols"
-  [value]="cars"
-  selectionMode="single"
-  [(selection)]="selectedCar"
-  (onRowSelect)="onRowSelect($event)"
-  [paginator]="true"
-  rows="10"
->
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns">
-        {{ col.header }}
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr [pSelectableRow]="rowData">
-      <td *ngFor="let col of columns">
-        {{ rowData[col.field] }}
-      </td>
-    </tr>
-  </ng-template>
-
-  <ng-template pTemplate="summary" let-rowData>
-    <div style="text-align:left">
-      <button
-        type="button"
-        pButton
-        icon="pi pi-plus"
-        (click)="showDialogToAdd()"
-        label="Add"
-      ></button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+      <app-menu></app-menu>
+  </header>
+    <p-table
+    [columns]="cols"
+    [value]="cars"
+    selectionMode="single"
+    [(selection)]="selectedCar"
+    (onRowSelect)="onRowSelect($event)"
+    [paginator]="true"
+    rows="10"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="summary" let-rowData>
+      <div style="text-align:left">
+        <button
+          type="button"
+          pButton
+          icon="pi pi-plus"
+          (click)="showDialogToAdd()"
+          label="Add"
+        ></button>
+      </div>
+    </ng-template>
+  </p-table>
+  
+  <p-dialog
+    header="Car Details"
+    [(visible)]="displayDialog"
+    [responsive]="true"
+    showEffect="fade"
+    [modal]="true"
+    [closable]="true"
+    [width]="300"
+  >
+    <div class="ui-g ui-fluid" *ngIf="car">
+      <div class="ui-g-4"><label for="vin">ID </label></div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="car.vin" />
+      </div>
+  
+      <div class="ui-g-4"><label for="year">Nombre del Producto </label></div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="car.year" />
+      </div>
+  
+      <div class="ui-g-4"><label for="brand">Características</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="car.brand" />
+      </div>
+  
+      <div class="ui-g-4"><label for="color">Fecha de lanzamiento</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="lanzamiento" [(ngModel)]="car.lanzamiento" />
+      </div>
+      <div class="ui-g-4"><label for="color">Correo fabricante</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="fabricante" [(ngModel)]="car.fabricante" />
+      </div>
+      <div class="ui-g-4"><label for="color">País de fabricación</label></div>
+      <div class="ui-g-8">
+          <select name="pais" [(ngModel)]="car.fabricacion">
+            <option *ngFor="let user of users" [value]="user.name" >
+              {{
+              user.name
+            }}
+          </option>
+          </select>
+      </div>
+      <div class="ui-g-4">
+        <label for="color">Precio en formato de moneda</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="moneda" [(ngModel)]="car.moneda" />
+      </div>
+      <div class="ui-g-4"><label for="color">Unidades disponibles</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="disponibles" [(ngModel)]="car.disponibles" />
+      </div>
+      <div class="ui-g-4"><label for="color">Unidades vendidas</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="vendidas" [(ngModel)]="car.vendidas" />
+      </div>
+      <div class="ui-g-4"><label for="color">Imagen del producto</label></div>
+      <div class="ui-g-8">
+        <input pInputText id="imagen" [(ngModel)]="car.imagen" />
+      </div>
     </div>
-  </ng-template>
-</p-table>
-
-<p-dialog
-  header="Car Details"
-  [(visible)]="displayDialog"
-  [responsive]="true"
-  showEffect="fade"
-  [modal]="true"
-  [closable]="true"
-  [width]="300"
->
-  <div class="ui-g ui-fluid" *ngIf="car">
-    <div class="ui-g-4"><label for="vin">ID </label></div>
-    <div class="ui-g-8">
-      <input pInputText id="vin" [(ngModel)]="car.vin" />
-    </div>
-
-    <div class="ui-g-4"><label for="year">Nombre del Producto </label></div>
-    <div class="ui-g-8">
-      <input pInputText id="year" [(ngModel)]="car.year" />
-    </div>
-
-    <div class="ui-g-4"><label for="brand">Características</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="brand" [(ngModel)]="car.brand" />
-    </div>
-
-    <div class="ui-g-4"><label for="color">Fecha de lanzamiento</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="lanzamiento" [(ngModel)]="car.lanzamiento" />
-    </div>
-    <div class="ui-g-4"><label for="color">Correo fabricante</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="fabricante" [(ngModel)]="car.fabricante" />
-    </div>
-    <div class="ui-g-4"><label for="color">País de fabricación</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="fabricacion" [(ngModel)]="car.fabricacion" />
-    </div>
-    <div class="ui-g-4"><label for="color">Precio en formato de moneda</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="moneda" [(ngModel)]="car.moneda" />
-    </div>
-    <div class="ui-g-4"><label for="color">Unidades disponibles</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="disponibles" [(ngModel)]="car.disponibles" />
-    </div>
-    <div class="ui-g-4"><label for="color">Unidades vendidas</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="vendidas" [(ngModel)]="car.vendidas" />
-    </div>
-    <div class="ui-g-4"><label for="color">Imagen del producto</label></div>
-    <div class="ui-g-8">
-      <input pInputText id="imagen" [(ngModel)]="car.imagen" />
-    </div>
-  </div>
-  <p-footer>
-    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-      <button
-        type="button"
-        pButton
-        icon="pi pi-times"
-        (click)="delete()"
-        label="Delete"
-      ></button>
-      <button
-        type="button"
-        pButton
-        icon="pi pi-check"
-        (click)="save()"
-        label="Save"
-      ></button>
-    </div>
-  </p-footer>
-</p-dialog>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button
+          type="button"
+          pButton
+          icon="pi pi-times"
+          (click)="delete()"
+          label="Delete"
+        ></button>
+        <button
+          type="button"
+          pButton
+          icon="pi pi-check"
+          (click)="save()"
+          label="Save"
+        ></button>
+      </div>
+    </p-footer>
+  </p-dialog>
+</body>
+</html>

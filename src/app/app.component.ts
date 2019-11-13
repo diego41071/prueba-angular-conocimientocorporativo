@@ -61,19 +61,6 @@ export class AppComponent implements OnInit {
             { field: 'imagen', header: 'Imagen del producto' }
 
         ];
-        // a.	ID 
-// b.	Nombre del Producto 
-// c.	Características (campo tipo texto) 
-// d.	Fecha de lanzamiento 
-// e.	Correo fabricante 
-// f.	País de fabricación 
-// i.	Usar el siguiente servicio (https://restcountries.eu/#api-endpoints-response-example ) u otro en desde internet 
- 
-// g.	Precio en formato de moneda 
-// h.	Unidades disponibles 
-// i.	Unidades vendidas 
-// j.	Imagen del producto 
-
     }
 
     showDialogToAdd() {
