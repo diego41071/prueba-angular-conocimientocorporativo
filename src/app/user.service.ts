@@ -8,6 +8,6 @@ export class UserService {
 
   constructor(protected http: HttpClient) { }
   getUsers() {
-    return this.http.get('https://restcountries.eu/rest/v2/alpha/col');
+    return this.http.get('https://restcountries.eu/rest/v2/all');
   }
 }

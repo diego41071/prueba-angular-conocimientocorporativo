@@ -1,8 +1,9 @@
-<app-menu></app-menu>
+<!-- <app-menu></app-menu> -->
 
 <div >
-    <h2>{{ name }}</h2>
-    <p>{{ alpha2Code }}</p>
+    <select name="pais" >
+        <option *ngFor="let user of users" [value]="user.alpha2Code">{{ user.name }}</option>
+    </select>
 </div>
 <p-table
   [columns]="cols"
