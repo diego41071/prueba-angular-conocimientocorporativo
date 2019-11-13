@@ -9,6 +9,8 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
+import {FileUploadModule} from 'primeng/fileupload';
+
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { UserService } from './user.service';
@@ -27,7 +29,8 @@ import { UserService } from './user.service';
         HttpClientModule,
         InputTextModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        FileUploadModule,
     ],
     providers: [UserService],
     bootstrap: [AppComponent]

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
   <title>Document</title>
 </head>
 <body>
@@ -28,8 +29,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pSelectableRow]="rowData">
-        <td *ngFor="let col of columns">
-          {{ rowData[col.field] }}
+        <td *ngFor="let col of columns"> 
+            <p>{{ rowData[col.field]}}</p>       
+          <img src="{{ rowData[col.imagen]}}">
         </td>
       </tr>
     </ng-template>
@@ -106,7 +108,7 @@
       </div>
       <div class="ui-g-4"><label for="color">Imagen del producto</label></div>
       <div class="ui-g-8">
-        <input pInputText id="imagen" [(ngModel)]="car.imagen" />
+          <p-fileUpload name="imagen[]" url="./"></p-fileUpload>
       </div>
     </div>
     <p-footer>

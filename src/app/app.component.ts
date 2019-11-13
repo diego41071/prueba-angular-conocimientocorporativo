@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 
             { field: 'vendidas', header: 'Unidades vendidas' },
 
-            { field: 'imagen', header: 'Imagen del producto' }
+            { imagen: 'imagen', header: 'Imagen del producto' }
 
         ];
     }
