@@ -4,7 +4,7 @@ import { CarService } from './services/carservice';
 import { UserService } from './user.service';
 
 export class PrimeCar implements Car {
-    constructor(public vin?, public year?, public brand?, public color?) {}
+    constructor(public vin?, public year?, public brand?, public color?) { }
 }
 
 @Component({
@@ -30,21 +30,22 @@ export class AppComponent implements OnInit {
     cars: Car[];
 
     cols: any[];
+    imagen: any;
 
     constructor(private carService: CarService,
         protected userService: UserService) { }
 
-            
+
     ngOnInit() {
         this.userService.getUsers()
-        .subscribe(
-          (data) => { // Success
-            this.users = data
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+            .subscribe(
+                (data) => { // Success
+                    this.users = data
+                },
+                (error) => {
+                    console.error(error);
+                }
+            );
         this.carService.getCarsSmall().then(cars => this.cars = cars);
 
         this.cols = [
@@ -66,11 +67,15 @@ export class AppComponent implements OnInit {
         ];
     }
 
-    onUpload(event) {
-        for(let file of event.files) {
-            this.uploadedFiles.push(file);
-        }
+    onFileChanges(files) {
+        this.imagen = files[0].base64
+        // console.log("File changed By Method :: ", files[0].base64);
+        console.log(this.imagen);
+
     }
+
+
+
     showDialogToAdd() {
         this.newCar = true;
         this.car = new PrimeCar();
@@ -98,7 +103,7 @@ export class AppComponent implements OnInit {
 
     onRowSelect(event) {
         this.newCar = false;
-        this.car = {...event.data};
+        this.car = { ...event.data };
         this.displayDialog = true;
     }
 

@@ -7,9 +7,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
-import {FileUploadModule} from 'primeng/fileupload';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
+import { FileUploadModule } from 'primeng/fileupload';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -30,7 +31,7 @@ import { UserService } from './user.service';
         InputTextModule,
         DialogModule,
         ButtonModule,
-        FileUploadModule,
+        FileUploadModule, AlifeFileToBase64Module
     ],
     providers: [UserService],
     bootstrap: [AppComponent]
