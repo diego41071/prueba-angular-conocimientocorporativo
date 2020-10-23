@@ -13,12 +13,35 @@
   <header>
     <app-menu></app-menu>
   </header>
-  <p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar"
+
+  <p-table #tt [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar"
     (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+    <ng-template pTemplate="caption">
+      <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="50" placeholder="Global Filter"
+        (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of columns">
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          <p-sortIcon [field]="col.field"></p-sortIcon>
           {{ col.header }}
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+          <input *ngSwitchCase="'vin'" pInputText type="text"
+            (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)">
+          <!-- <div *ngSwitchCase="'year'">
+            {{yearFilter}}
+            <i class="pi pi-times" (click)="yearFilter=null;tt.filter(null, col.field, col.filterMatchMode)"></i>
+            <p-slider [style]="{'width':'100%','margin-top':'8px'}" [(ngModel)]="yearFilter" [min]="1970" [max]="2010"
+              (onChange)="onYearChange($event, dt)"></p-slider>
+          </div>
+          <p-dropdown *ngSwitchCase="'brand'" [options]="brands" [style]="{'width':'100%'}"
+            (onChange)="tt.filter($event.value, col.field, 'equals')"></p-dropdown>
+          <p-multiSelect *ngSwitchCase="'color'" [options]="colors" defaultLabel="All Colors"
+            (onChange)="tt.filter($event.value, col.field, 'in')"></p-multiSelect> -->
         </th>
       </tr>
     </ng-template>
@@ -30,7 +53,6 @@
         </td>
       </tr>
     </ng-template>
-
     <ng-template pTemplate="summary" let-rowData>
       <div style="text-align:left">
         <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
